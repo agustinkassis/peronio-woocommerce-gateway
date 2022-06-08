@@ -1,0 +1,275 @@
+.btn-Pay,
+.btn-Success,
+.btn-Cancel,
+.btn-Disable {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  color: #6297e4;
+  font-weight: 500;
+  margin: 0 auto;
+  background-color: transparent;
+  border: 1px solid #6297e4;
+  font-size: 25px;
+  display: none;
+}
+
+.btn-Success {
+  border-color: #92d17f;
+  color: #92d17f;
+}
+.btn-Cancel {
+  border-color: #f36060;
+  color: #f36060;
+}
+.btn-Disable {
+  border-color: #979ca3;
+  color: #979ca3;
+}
+
+.card-wallet {
+  border: 1px solid #cecccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: 0.3s all;
+  min-height: 60px;
+  width: 100%;
+  background-color: transparent;
+}
+
+.card-wallet p {
+  margin: 0;
+}
+
+.card-wallet:hover {
+  transform: scale(0.97);
+  transition: 0.3s all;
+}
+.card-wallet:active {
+  transform: scale(1);
+  transition: 0.3s all;
+}
+
+.img-wallet {
+  width: 40px;
+}
+
+.card-modal-title {
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  font-family: unset;
+}
+
+.modal-header {
+  background-color: #173765;
+  color: white;
+}
+
+.card-close {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.notMetamask {
+  font-size: 17px;
+  color: #7a7676;
+  display: none;
+}
+
+.payScreen {
+  display: none;
+}
+
+.payScreen h3 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #173765;
+  text-align: center;
+  font-family: unset;
+}
+
+.payScreen .wallet {
+  text-align: center;
+  color: #8c8c8c;
+}
+
+.priceTitle {
+  text-align: center;
+  color: #787878;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: unset;
+  margin: 0;
+}
+
+.priceAmount {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+.priceAmountFounds {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+
+  letter-spacing: -1px;
+  color: #fa4d4d;
+}
+
+.containerPayButtons {
+  display: none;
+  justify-content: center;
+}
+
+.payCancel {
+  border: 1px solid #fa4d4d;
+  background: transparent;
+  border-radius: 5px;
+  padding: 7px 10px;
+  width: 100px;
+  color: #f05e5e;
+  transition: 0.3s all;
+  margin: 0 10px;
+}
+.payCancel:hover {
+  transition: 0.3s all;
+  background: #f05e5e;
+  color: white;
+}
+.payCancel:active {
+  transform: scale(1.05);
+}
+.paySend {
+  margin: 0 10px;
+  border: 1px solid #43a4f7;
+  background: transparent;
+  border-radius: 5px;
+  padding: 7px 10px;
+  width: 200px;
+  color: #2f93ed;
+  transition: 0.3s all;
+}
+.paySend:hover {
+  transition: 0.3s all;
+  background: #2f93ed;
+  color: white;
+}
+.paySend:active {
+  transform: scale(1.05);
+}
+
+#loading-spinner {
+  display: block;
+  margin: 0 auto;
+  animation: loading-spinner-spin 2s linear infinite;
+  will-change: transform;
+}
+
+@keyframes loading-spinner-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#loading-circle-large {
+  stroke-dasharray: 210;
+  stroke-dashoffset: 210;
+  stroke-linecap: round;
+  animation: loading-spinner-large 1.7s cubic-bezier(0.445, 0.05, 0.55, 0.95)
+    infinite;
+  transform: translateZ(0);
+  transform-origin: center;
+  will-change: stroke-dashoffset;
+}
+
+@keyframes loading-spinner-large {
+  0% {
+    stroke-dashoffset: 190;
+    transform: scaleY(1);
+  }
+  49.99% {
+    stroke-dashoffset: 0;
+    transform: scaleY(1);
+  }
+  50% {
+    stroke-dashoffset: 0;
+    transform: scaleY(-1) rotate(25deg);
+  }
+  100% {
+    stroke-dashoffset: 190;
+    transform: scaleY(-1) rotate(-32deg);
+  }
+}
+
+.loadingText {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 30px;
+  color: #575050;
+}
+
+.containerLoading {
+  display: none;
+}
+
+.btn-login {
+  display: none;
+}
+
+.error-tag {
+  color: #f36060;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 10px;
+  display: none;
+}
+
+.container-form {
+  width: 350px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
+
+.container-input {
+  width: 100%;
+}
+.container-label {
+  padding-top: 30px;
+  text-align: left;
+}
+.container-button {
+  text-align: center;
+  display: none;
+  width: 100%;
+  margin-top: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #585c60;
+  padding: 10px 10px;
+  color: white;
+  font-weight: 600;
+}
+.container-button-form {
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #585c60;
+  padding: 10px 10px;
+  color: white;
+  font-weight: 600;
+}

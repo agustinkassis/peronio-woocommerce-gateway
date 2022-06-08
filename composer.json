@@ -1,0 +1,19 @@
+{
+  "minimum-stability":"dev",
+  "autoload": {
+    "psr-4": {
+      "Ethereum\\": "src/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/digitaldonkey/ethereum-php.git"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "digitaldonkey/ethereum-php": "dev-master",
+    "sc0vu/web3.php": "dev-master"
+  }
+}
