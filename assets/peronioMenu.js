@@ -80,18 +80,33 @@ jQuery(document).ready(function ($) {
   });
 
   async function changeNetwork() {
-    await window.ethereum.request({
-      method: "wallet_addEthereumChain",
-      params: [
-        {
-          chainId: `0x${Number(80001).toString(16)}`,
-          chainName: "Matic(Polygon) Mumbai Testnet",
-          nativeCurrency: {name: "tMATIC", symbol: "tMATIC", decimals: 18},
-          rpcUrls: ["https://rpc-mumbai.matic.today"],
-          blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
-        },
-      ],
-    });
+    if (extradata.rpc_enviroment === "true") {
+      await window.ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: `0x${Number(137).toString(16)}`,
+            chainName: "Matic(Polygon) Mainnet",
+            nativeCurrency: {name: "MATIC", symbol: "MATIC", decimals: 18},
+            rpcUrls: [extradata.rpc],
+            blockExplorerUrls: ["https://www.polygonscan.com"],
+          },
+        ],
+      });
+    } else {
+      await window.ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: `0x${Number(80001).toString(16)}`,
+            chainName: "Matic(Polygon) Mumbai Testnet",
+            nativeCurrency: {name: "tMATIC", symbol: "tMATIC", decimals: 18},
+            rpcUrls: [extradata.rpc],
+            blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+          },
+        ],
+      });
+    }
   }
 
   $("#button-change-form").click(function (e) {

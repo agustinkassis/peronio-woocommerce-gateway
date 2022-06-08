@@ -312,10 +312,7 @@ jQuery(document).ready(function ($) {
     };
 
     const webSocket3 = new Web3(
-      new Web3.providers.WebsocketProvider(
-        "wss://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai/ws",
-        options
-      )
+      new Web3.providers.WebsocketProvider(extradata.rpc_ws, options)
     );
 
     let contractToken = new window.web3.eth.Contract(
@@ -369,8 +366,7 @@ jQuery(document).ready(function ($) {
   $("#walletConnectButton").click(async function () {
     var provider = new WalletConnectProvider.default({
       rpc: {
-        80001:
-          "https://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai",
+        [extradata.rpc_enviroment === "true" ? 137 : 80001]: extradata.rpc,
       },
     });
 
@@ -399,10 +395,7 @@ jQuery(document).ready(function ($) {
         };
 
         const webSocket3 = new Web3(
-          new Web3.providers.WebsocketProvider(
-            "wss://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai/ws",
-            options
-          )
+          new Web3.providers.WebsocketProvider(extradata.rpc_ws, options)
         );
 
         window.web3 = new Web3(provider);
@@ -593,19 +586,32 @@ jQuery(document).ready(function ($) {
   }
 
   async function changeNetwork() {
-    await window.ethereum.request({
-      method: "wallet_addEthereumChain",
-      params: [
-        {
-          chainId: `0x${Number(80001).toString(16)}`,
-          chainName: "Matic(Polygon) Mumbai Testnet",
-          nativeCurrency: {name: "tMATIC", symbol: "tMATIC", decimals: 18},
-          rpcUrls: [
-            "https://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai",
-          ],
-          blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
-        },
-      ],
-    });
+    if (extradata.rpc_enviroment === "true") {
+      await window.ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: `0x${Number(137).toString(16)}`,
+            chainName: "Matic(Polygon) Mainnet",
+            nativeCurrency: {name: "MATIC", symbol: "MATIC", decimals: 18},
+            rpcUrls: [extradata.rpc],
+            blockExplorerUrls: ["https://www.polygonscan.com"],
+          },
+        ],
+      });
+    } else {
+      await window.ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: `0x${Number(80001).toString(16)}`,
+            chainName: "Matic(Polygon) Mumbai Testnet",
+            nativeCurrency: {name: "tMATIC", symbol: "tMATIC", decimals: 18},
+            rpcUrls: [extradata.rpc],
+            blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+          },
+        ],
+      });
+    }
   }
 });

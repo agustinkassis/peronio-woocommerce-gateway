@@ -153,7 +153,9 @@ wp_enqueue_script('peronio_pay_js', WC_PE_PAY_URL . 'assets/peronioPayProcessOrd
          'ajax' => home_url('/wp-admin/admin-ajax.php'),
       'peronio_token_address' => get_option('peronio_token_address'),
       'peronio_payment_address' => get_option('peronio_payment_address'),
-      'testing' => get_option('testing'),
+       'rpc' => WC_PE_RPC,
+       'rpc_ws' => WC_PE_RPC_WEBSOCKET,
+       'rpc_enviroment' => WC_PE_RPC_PRODUCTION,
     )
   );
 

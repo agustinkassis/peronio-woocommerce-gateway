@@ -20,6 +20,16 @@ define('WC_PE_PAY_FILE', __FILE__);
 define('WC_PE_PAY_PATH', plugin_dir_path(WC_PE_PAY_FILE));
 define('WC_PE_PAY_URL', plugin_dir_url(WC_PE_PAY_FILE)); 
 
+//Development
+ define("WC_PE_RPC", "https://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai");
+define("WC_PE_RPC_WEBSOCKET", "wss://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai/ws") ;
+define("WC_PE_RPC_PRODUCTION", "false") ; 
+
+//Production
+/* define("WC_PE_RPC", "https://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mainnet");
+define("WC_PE_RPC_WEBSOCKET", "wss://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mainnet/ws") ;
+define("WC_PE_RPC_PRODUCTION", "true") ; */
+
 add_action( 'plugins_loaded', 'peronio_payment_init', 11 );
 register_activation_hook(__FILE__,'registerPeronioGeneralSettings');
 require __DIR__ . '/vendor/autoload.php';
@@ -145,10 +155,10 @@ function UpdateForm () {
     try {
   
  
-         $web3 = new Web3(new HttpProvider(new HttpRequestManager('https://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai', 1000)));
+         $web3 = new Web3(new HttpProvider(new HttpRequestManager(WC_PE_RPC, 1000)));
          $contractAddress = get_option('peronio_payment_address');
          $abiContract = json_decode('[{"inputs":[{"internalType":"address","name":"currencyAddress","type":"address"},{"internalType":"address","name":"owner_","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"string","name":"id","type":"string"},{"indexed":true,"internalType":"address","name":"payer","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"date","type":"uint256"}],"name":"Payment","type":"event"},{"inputs":[],"name":"currency","outputs":[{"internalType":"contract IERC20","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"","type":"string"}],"name":"invoices","outputs":[{"internalType":"string","name":"id","type":"string"},{"internalType":"address","name":"payer","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"date","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"id","type":"string"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"payInvoice","outputs":[],"stateMutability":"nonpayable","type":"function"}]');
-         $contract = new Contract(new HttpProvider(new HttpRequestManager('https://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai', 1000)), $abiContract);
+         $contract = new Contract(new HttpProvider(new HttpRequestManager(WC_PE_RPC, 1000)), $abiContract);
 
          $contract->at($contractAddress)->call('invoices', $nonce ,function ($err, $data) {
              
