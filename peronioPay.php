@@ -178,6 +178,7 @@ function UpdateForm () {
                 $order = new WC_Order($order_id);
                $order->add_meta_data('TransactionId', $transaction_id);
                $order->add_meta_data('orderId', $order_id);
+               $order->add_meta_data('nonce', $nonce);
                $transection = 'Payment Received - Transaction ID:'. $transaction_id;                
                $order->add_order_note($transection);
                $order->update_status("completed");
