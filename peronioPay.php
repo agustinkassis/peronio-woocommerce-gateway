@@ -121,6 +121,10 @@ function registerPeronioGeneralSettings(){
 
     if(!get_option('peronio_owner_address'))
         add_option('peronio_owner_address', '');
+
+        
+    if(!get_option('peronio_decimals_token'))
+        add_option('peronio_decimals_token', '6');
     
 };
    
@@ -140,6 +144,7 @@ function UpdateForm () {
     update_option('peronio_token_address', $_POST["peronio_token_address"]);
     update_option('peronio_payment_address', $_POST["peronio_payment_address"]);
     update_option('peronio_owner_address', $_POST["peronio_owner_address"]);
+    update_option('peronio_decimals_token', $_POST["peronio_decimals_token"]);
   }
   return false;
 

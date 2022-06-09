@@ -33,6 +33,10 @@ wp_enqueue_style('peronio_pay_css', WC_PE_PAY_URL . 'assets/peronioPayProcessOrd
         <label class="col-12 container-label"> Owner Address: </label>
         <input type="text" id="input4" class="container-input" value="<?php  echo get_option("peronio_owner_address") ?>" /> 
       </div>
+      <div class="text-left"> 
+        <label class="col-12 container-label"> Decimals Token: </label>
+        <input type="text" id="input5" class="container-input" value="<?php  echo get_option("peronio_decimals_token") ?>" /> 
+      </div>
       <button id="button-change-form" class="container-button-form"> Update Contracts with form </button>
       <button id="button-change" class="container-button"> generate new payment gateway contract </button>
       <button id="button-metamask" class="container-button"> Connect Metamask </button>
@@ -67,6 +71,7 @@ wp_enqueue_script('peronio_pay2_js', WC_PE_PAY_URL . 'assets/peronioMenu.js', ar
       'peronio_token_address' => get_option('peronio_token_address'),
       'peronio_payment_address' => get_option('peronio_payment_address'),
       'peronio_owner_address' => get_option('peronio_owner_address'),
+      'peronio_decimals_token' => get_option('peronio_decimals_token'),
        'rpc' => WC_PE_RPC,
        'rpc_ws' => WC_PE_RPC_WEBSOCKET,
        'rpc_enviroment' => WC_PE_RPC_PRODUCTION,
