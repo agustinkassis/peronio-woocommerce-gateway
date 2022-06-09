@@ -21,14 +21,14 @@ define('WC_PE_PAY_PATH', plugin_dir_path(WC_PE_PAY_FILE));
 define('WC_PE_PAY_URL', plugin_dir_url(WC_PE_PAY_FILE)); 
 
 //Development
- define("WC_PE_RPC", "https://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai");
+/*  define("WC_PE_RPC", "https://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai");
 define("WC_PE_RPC_WEBSOCKET", "wss://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mumbai/ws") ;
-define("WC_PE_RPC_PRODUCTION", "false") ; 
+define("WC_PE_RPC_PRODUCTION", "false") ;  */
 
 //Production
-/* define("WC_PE_RPC", "https://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mainnet");
+ define("WC_PE_RPC", "https://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mainnet");
 define("WC_PE_RPC_WEBSOCKET", "wss://speedy-nodes-nyc.moralis.io/9aadb4a1729324fc6f104286/polygon/mainnet/ws") ;
-define("WC_PE_RPC_PRODUCTION", "true") ; */
+define("WC_PE_RPC_PRODUCTION", "true") ; 
 
 add_action( 'plugins_loaded', 'peronio_payment_init', 11 );
 register_activation_hook(__FILE__,'registerPeronioGeneralSettings');
@@ -114,7 +114,7 @@ function registerPeronioGeneralSettings(){
         add_option('peronio_gateway_address', '');
     
     if(!get_option('peronio_token_address'))
-        add_option('peronio_token_address', '');
+        add_option('peronio_token_address', '0xc2768beF7a6BB57F0FfA169a9ED4017c09696FF1');
     
     if(!get_option('peronio_payment_address'))
         add_option('peronio_payment_address', '');
