@@ -1,3 +1,4 @@
 # peronio-woocommerce-gateway
-Peronio Woocommerce Gateway
+Peronio Woocommerce Gateway.
+
 Wordpress plugin for accepting Peronio Payments via web3.
