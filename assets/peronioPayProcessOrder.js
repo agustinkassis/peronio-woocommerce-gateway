@@ -346,7 +346,7 @@ jQuery(document).ready(function ($) {
       .allowance(tempAccount[0], contract_address_gateway)
       .call({from: tempAccount[0]});
 
-    if (allowance.toString() === parseInt(extradata.total) + "0".repeat(18))
+    if (allowance.toString() === parseInt(extradata.total) + "0".repeat(6))
       $("#btnPay").show();
     else $("#btnApprove").show();
 
@@ -443,7 +443,7 @@ jQuery(document).ready(function ($) {
           .allowance(account, contract_address_gateway)
           .call({from: account});
 
-        if (allowance.toString() === parseInt(extradata.total) + "0".repeat(18))
+        if (allowance.toString() === parseInt(extradata.total) + "0".repeat(6))
           $("#btnPay").show();
         else $("#btnApprove").show();
 
@@ -475,7 +475,7 @@ jQuery(document).ready(function ($) {
     $("#error-tag").hide();
 
     await contractMethods.contractGateway.methods
-      .payInvoice(extradata.nonce, parseInt(extradata.total) + "0".repeat(18))
+      .payInvoice(extradata.nonce, parseInt(extradata.total) + "0".repeat(6))
       .send({
         from: account,
       })
@@ -495,7 +495,7 @@ jQuery(document).ready(function ($) {
     await contractMethods.contractToken.methods
       .approve(
         contract_address_gateway,
-        parseInt(extradata.total) + "0".repeat(18)
+        parseInt(extradata.total) + "0".repeat(6)
       )
       .send({from: account})
       .then((result) => {
@@ -516,10 +516,7 @@ jQuery(document).ready(function ($) {
         .allowance(account, contract_address_gateway)
         .call({from: account})
         .then((result) => {
-          if (
-            result.toString() ===
-            parseInt(extradata.total) + "0".repeat(18)
-          ) {
+          if (result.toString() === parseInt(extradata.total) + "0".repeat(6)) {
             clearInterval(intervalId);
             $("#containerLoading").hide();
             $("#payScreen").show();
@@ -540,7 +537,7 @@ jQuery(document).ready(function ($) {
           action: "verifyPayment",
           nonce: extradata.nonce,
           order_id: extradata.id,
-          total: parseInt(extradata.total) + "0".repeat(18),
+          total: parseInt(extradata.total) + "0".repeat(6),
           secret_code: secret_code,
           transaction_id: event.transactionHash,
         },
@@ -562,7 +559,7 @@ jQuery(document).ready(function ($) {
         action: "verifyPayment",
         nonce: extradata.nonce,
         order_id: extradata.id,
-        total: parseInt(extradata.total) + "0".repeat(18),
+        total: parseInt(extradata.total) + "0".repeat(6),
         secret_code: secret_code,
         transaction_id: "---",
       },
