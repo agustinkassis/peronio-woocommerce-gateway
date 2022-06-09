@@ -124,6 +124,7 @@ jQuery(document).ready(function ($) {
         peronio_token_address: $("#input2").val(),
         peronio_payment_address: $("#input3").val(),
         peronio_owner_address: $("#input4").val(),
+        peronio_decimals_token: $("#input5").val(),
       },
       success: function (response) {
         location.reload();
@@ -168,6 +169,7 @@ jQuery(document).ready(function ($) {
             peronio_gateway_address: $("#input1").val(),
             peronio_token_address: $("#input2").val(),
             peronio_owner_address: $("#input4").val(),
+            peronio_decimals_token: $("#input5").val(),
             peronio_payment_address:
               result.events.GatewayCreated.returnValues.contractAddress,
           },

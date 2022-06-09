@@ -346,7 +346,11 @@ jQuery(document).ready(function ($) {
       .allowance(tempAccount[0], contract_address_gateway)
       .call({from: tempAccount[0]});
 
-    if (allowance.toString() === parseInt(extradata.total) + "0".repeat(6))
+    if (
+      allowance.toString() ===
+      parseInt(extradata.total) +
+        "0".repeat(parseInt(extradata.peronio_decimals_token))
+    )
       $("#btnPay").show();
     else $("#btnApprove").show();
 
@@ -443,7 +447,11 @@ jQuery(document).ready(function ($) {
           .allowance(account, contract_address_gateway)
           .call({from: account});
 
-        if (allowance.toString() === parseInt(extradata.total) + "0".repeat(6))
+        if (
+          allowance.toString() ===
+          parseInt(extradata.total) +
+            "0".repeat(parseInt(extradata.peronio_decimals_token))
+        )
           $("#btnPay").show();
         else $("#btnApprove").show();
 
@@ -475,7 +483,11 @@ jQuery(document).ready(function ($) {
     $("#error-tag").hide();
 
     await contractMethods.contractGateway.methods
-      .payInvoice(extradata.nonce, parseInt(extradata.total) + "0".repeat(6))
+      .payInvoice(
+        extradata.nonce,
+        parseInt(extradata.total) +
+          "0".repeat(parseInt(extradata.peronio_decimals_token))
+      )
       .send({
         from: account,
       })
@@ -495,7 +507,8 @@ jQuery(document).ready(function ($) {
     await contractMethods.contractToken.methods
       .approve(
         contract_address_gateway,
-        parseInt(extradata.total) + "0".repeat(6)
+        parseInt(extradata.total) +
+          "0".repeat(parseInt(extradata.peronio_decimals_token))
       )
       .send({from: account})
       .then((result) => {
@@ -516,7 +529,11 @@ jQuery(document).ready(function ($) {
         .allowance(account, contract_address_gateway)
         .call({from: account})
         .then((result) => {
-          if (result.toString() === parseInt(extradata.total) + "0".repeat(6)) {
+          if (
+            result.toString() ===
+            parseInt(extradata.total) +
+              "0".repeat(parseInt(extradata.peronio_decimals_token))
+          ) {
             clearInterval(intervalId);
             $("#containerLoading").hide();
             $("#payScreen").show();
@@ -528,6 +545,8 @@ jQuery(document).ready(function ($) {
     }, 3000);
   });
 
+  console.log(extradata);
+
   function confirmPayment(event) {
     if (event.returnValues.id === extradata.nonce) {
       $.ajax({
@@ -537,7 +556,9 @@ jQuery(document).ready(function ($) {
           action: "verifyPayment",
           nonce: extradata.nonce,
           order_id: extradata.id,
-          total: parseInt(extradata.total) + "0".repeat(6),
+          total:
+            parseInt(extradata.total) +
+            "0".repeat(parseInt(extradata.peronio_decimals_token)),
           secret_code: secret_code,
           transaction_id: event.transactionHash,
         },
@@ -559,7 +580,9 @@ jQuery(document).ready(function ($) {
         action: "verifyPayment",
         nonce: extradata.nonce,
         order_id: extradata.id,
-        total: parseInt(extradata.total) + "0".repeat(6),
+        total:
+          parseInt(extradata.total) +
+          "0".repeat(parseInt(extradata.peronio_decimals_token)),
         secret_code: secret_code,
         transaction_id: "---",
       },
