@@ -409,6 +409,7 @@ jQuery(document).ready(function ($) {
           $("#containerLoading").hide();
           $("#connectScreen").show();
           $("#error-walletconnect").show();
+          await changeNetworkWalletConnect(provider);
           provider.disconnect();
         }
 
