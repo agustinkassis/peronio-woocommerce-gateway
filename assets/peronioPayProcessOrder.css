@@ -54,6 +54,10 @@
   transition: 0.3s all;
 }
 
+.error-wallet {
+  display: none;
+}
+
 .img-wallet {
   width: 40px;
 }

@@ -364,13 +364,15 @@ jQuery(document).ready(function ($) {
 
   //Connect with wallet connect
   $("#walletConnectButton").click(async function () {
-    var provider = new WalletConnectProvider.default({
+    let provider = new WalletConnectProvider.default({
       rpc: {
         [extradata.rpc_enviroment === "true" ? 137 : 80001]: extradata.rpc,
       },
     });
 
-    provider
+    $("#error-walletconnect").hide();
+
+    await provider
       .enable()
       .then(async function (res) {
         //Get contracts methods
@@ -399,6 +401,17 @@ jQuery(document).ready(function ($) {
         );
 
         window.web3 = new Web3(provider);
+
+        //  Get Chain Id
+        const chainId = await web3.eth.getChainId();
+
+        if (chainId !== (extradata.rpc_enviroment === "true" ? 137 : 80001)) {
+          $("#containerLoading").hide();
+          $("#connectScreen").show();
+          $("#error-walletconnect").show();
+          await changeNetworkWalletConnect(provider);
+          provider.disconnect();
+        }
 
         let contractToken = new window.web3.eth.Contract(
           abiContractToken,
@@ -436,8 +449,8 @@ jQuery(document).ready(function ($) {
 
         //Validate enough tokens to use
         $("#containerLoading").hide();
-        /*  if (balance < parseInt(extradata.total)) $("#noFunds").show();
-         else  */ $("#payScreen").show();
+        if (balance < parseInt(extradata.total)) $("#noFunds").show();
+        else $("#payScreen").show();
 
         //connect to Event
         contractGatewayWebsocket.events
@@ -601,6 +614,35 @@ jQuery(document).ready(function ($) {
       });
     } else {
       await window.ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: `0x${Number(80001).toString(16)}`,
+            chainName: "Matic(Polygon) Mumbai Testnet",
+            nativeCurrency: {name: "tMATIC", symbol: "tMATIC", decimals: 18},
+            rpcUrls: [extradata.rpc],
+            blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+          },
+        ],
+      });
+    }
+  }
+  async function changeNetworkWalletConnect(provider) {
+    if (extradata.rpc_enviroment === "true") {
+      await provider.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: `0x${Number(137).toString(16)}`,
+            chainName: "Matic(Polygon) Mainnet",
+            nativeCurrency: {name: "MATIC", symbol: "MATIC", decimals: 18},
+            rpcUrls: [extradata.rpc],
+            blockExplorerUrls: ["https://www.polygonscan.com"],
+          },
+        ],
+      });
+    } else {
+      await provider.request({
         method: "wallet_addEthereumChain",
         params: [
           {

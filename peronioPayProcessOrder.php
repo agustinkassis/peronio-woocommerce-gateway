@@ -94,7 +94,8 @@
                <div id='connectScreen' >
                 <button id=metamaskButton class=card-wallet> <p><img  src="<?php echo esc_url(WC_PE_PAY_URL . 'assets/images/MetaMask.webp') ?>" class=img-wallet  alt=metamask />  Metamask </p>  <p id=metamaskMessage class='notMetamask'>(Extension no encontrada, porfavor install Metamask)</p> </button>
                 <button id=walletConnectButton class=card-wallet> <img  src="<?php echo esc_url(WC_PE_PAY_URL . 'assets/images/walletconnect-logo.svg') ?>" class=img-wallet  alt=metamask />   WalletConnect </button>
-               </div>   
+                 <p class='priceAmountFounds error-wallet' id="error-walletconnect"  > Error al conectarte con WalletConnect, porfavor asegurate de estar en la red de polygon para poder realizar la conexion </p>
+              </div>   
                
                 <div id='payScreen' class='payScreen'> 
                     <h3> Cartera conectada </h3>
